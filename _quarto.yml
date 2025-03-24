@@ -1,0 +1,43 @@
+project:
+  type: book
+
+book:
+  title: "Faire des courbes dose-réponse avec R et drc"
+  subtitle: "Git repository"
+  author:
+    - name: "Lisa Gollot"
+      orcid: ""
+      affiliations:
+        - name: "Université Paris-Saclay, INRAE, AgroParisTech, UMR 1402 ECOSYS"
+          department: "Sol&Tox"
+        - name: "Ineris"
+          department: "TEAM"
+  date: "3/21/2025"
+  chapters:
+    - index.qmd
+    - quarto/A_Theorie_courbe_dose_reponse.qmd
+    - quarto/B_Courbe_dose_reponse_avec_R.qmd
+
+bibliography: references/references.bib # ne pas exporter toute la bibliothèse juste la collection PhD
+csl: references/apa.csl
+
+execute:
+  cache: true
+  freeze: auto
+
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    code-block-bg: true
+    highlight-style: appearance/lightnord.theme
+    code-block-border-left: "#E5E9F0"
+    code-overflow: wrap
+    code-annotations: select
+    theme:
+      - cosmo
+      - appearance/html_css.scss
+
+editor: 
+    markdown:
+      canonical: true

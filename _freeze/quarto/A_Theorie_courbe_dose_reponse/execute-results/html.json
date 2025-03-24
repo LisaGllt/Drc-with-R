@@ -1,0 +1,15 @@
+{
+  "hash": "a4d5814d0bed8292b2f0cf5655393975",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\n\n\n\n# Principe des courbes dose-réponse\n\n**Définitions Clés :**\n\nDose \n: Quantité d'une substance administrée à un organisme.\n\nRéponse \n: Effet mesuré, comme la mortalité, la croissance ou la reproduction.\n\nEC$_{50}$ (Concentration Effective 50%) \n: Dose à laquelle 50% de la réponse maximale est observée.\n\nNOEC (No Observed Effect Concentration) \n: Concentration testée la plus élevée sans effet observable.\n\nLOEC (Lowest Observed Effect Concentration) \n: Concentration testée la plus faible à laquelle un effet significatif est observé.\n\nMême s'il existe des variantes, les courbes dose-réponse sont la plupart du temps modéliser par un modèle de Hill, aussi appelé modèle log-logistique à 4 paramètres (@eq-Hill, @fig-drcscheme).\n\n$$\nY=Y_{min}+\\frac{Y_{max}-Y_{min}}{1+\\text{exp}(Slope\\times [\\text{Ln}(Dose)-\\text{Ln}(EC_{50})])}\n$$ {#eq-Hill}\n\nAvec :\n\n-   $Y$ : Réponse pour une dose donnée,\n-   $Y_{min}$ : Réponse minimale,\n-   $Y_{max}$ : Réponse maximale,\n-   $EC_{50}$ : Dose pour laquelle la réponse vaut $(Y_{max}-Y_{min})/2$,\n-   $Slope$ : Pente de la courbe lorsque la dose équivaut à l'EC$_{50}$.\n\n\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![Schematic representation of a dose-response curve with the Hill model](A_Theorie_courbe_dose_reponse_files/figure-html/fig-drcscheme-1.png){#fig-drcscheme width=384}\n:::\n:::\n\n\n\n\n\nIntéprétation :\n\n- Une courbe plus abrupte indique une réponse très sensible aux variations de dose.\n- Une EC50 faible signifie que l'organisme est très sensible à la substance.\n- Les valeurs de NOEC, LOEC et EC50 permettent d'évaluer la toxicité et de fixer des seuils de sécurité.\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
