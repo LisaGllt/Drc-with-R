@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Faire des courbes dose-réponse avec R et drc",
     "section": "",
-    "text": "1 Objectifs de ce repo\nLe but ici n’est pas d’être exhaustif mais de donner le pied à l’étrier à quelqu’un qui voudrait en savoir plus sur la modélisation de courbe dose-réponse.\nLes exemples sont basés sur des données simulées à partir du fichier R/Sim_data.R et sauvegrader dans le dossier data.",
+    "text": "1 Objectifs de ce repo\nLe but ici n’est pas d’être exhaustif mais de donner le pied à l’étrier à quelqu’un qui voudrait en savoir plus sur la modélisation de courbe dose-réponse.\nLes exemples sont basés sur des données simulées à partir du fichier R/Sim_data.R et sauvegrader dans le dossier data.\nN’hésitez pas à me dire s’il y a des erreurs dans ce dépôt.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Objectifs de ce repo</span>"
     ]
