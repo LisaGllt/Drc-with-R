@@ -717,6 +717,7 @@ bartlett.test(
   data=df_sim_repro
   )
 ```
+
 L'hypothèse de normalité des données et d'homogénéité des variances sont vérifiées.
 
 ```{r, warning=F}
@@ -747,4 +748,4 @@ dunn_results |>
 
 ```
 
-Ce test statistique nous permet pas de déterminer une NOEC et une LOEC. Cela est du à la plus faible puissance statistique d'un test non-paramétrique vs. paramétrique comme utilisé juste avant.
+Le test de Kruskal-Wallis nous donne bien l'information qu'il y a un effet de la dose sur le nombre d'oeufs produits par nos dragons. En revanche, le test de dunnet ne nous permet pas de déterminer une NOEC et une LOEC. Cela est du à la plus faible puissance statistique d'un test non-paramétrique vs. paramétrique comme utilisé juste avant.

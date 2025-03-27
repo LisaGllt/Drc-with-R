@@ -1346,7 +1346,7 @@ Kruskal-Wallis chi-squared = 30.529, df = 7, p-value = 7.592e-05</code></pre>
 28  7.90569415042095 - 79.0569415042095 0.578731836</code></pre>
 </div>
 </div>
-<p>Ce test statistique nous permet pas de déterminer une NOEC et une LOEC. Cela est du à la plus faible puissance statistique d’un test non-paramétrique vs.&nbsp;paramétrique comme utilisé juste avant.</p>
+<p>Le test de Kruskal-Wallis nous donne bien l’information qu’il y a un effet de la dose sur le nombre d’oeufs produits par nos dragons. En revanche, le test de dunnet ne nous permet pas de déterminer une NOEC et une LOEC. Cela est du à la plus faible puissance statistique d’un test non-paramétrique vs.&nbsp;paramétrique comme utilisé juste avant.</p>
 
 
 <!-- -->
@@ -2592,37 +2592,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb44-731"><a href="#cb44-731" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>df_sim_repro</span>
 <span id="cb44-732"><a href="#cb44-732" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb44-733"><a href="#cb44-733" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-734"><a href="#cb44-734" aria-hidden="true" tabindex="-1"></a>L'hypothèse de normalité des données et d'homogénéité des variances sont vérifiées.</span>
-<span id="cb44-735"><a href="#cb44-735" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-736"><a href="#cb44-736" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=F}</span></span>
-<span id="cb44-737"><a href="#cb44-737" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-738"><a href="#cb44-738" aria-hidden="true" tabindex="-1"></a><span class="in">lm.repro &lt;- aov(Oeuf ~ Dose_f, data = df_sim_repro)</span></span>
-<span id="cb44-739"><a href="#cb44-739" aria-hidden="true" tabindex="-1"></a><span class="in">summary(lm.repro)</span></span>
-<span id="cb44-740"><a href="#cb44-740" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-741"><a href="#cb44-741" aria-hidden="true" tabindex="-1"></a><span class="in">dunnett.test.repro &lt;- glht(lm.repro, linfct = mcp(Dose_f = "Dunnett"))</span></span>
-<span id="cb44-742"><a href="#cb44-742" aria-hidden="true" tabindex="-1"></a><span class="in">summary(dunnett.test.repro)</span></span>
-<span id="cb44-743"><a href="#cb44-743" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-744"><a href="#cb44-744" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-745"><a href="#cb44-745" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-746"><a href="#cb44-746" aria-hidden="true" tabindex="-1"></a>D'après ces résultats, on en déduit que pour notre jeu de données :</span>
-<span id="cb44-747"><a href="#cb44-747" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-748"><a href="#cb44-748" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>NOEC = 7.9 mg/L</span>
-<span id="cb44-749"><a href="#cb44-749" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>LOEC = 25 mg/L</span>
-<span id="cb44-750"><a href="#cb44-750" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-751"><a href="#cb44-751" aria-hidden="true" tabindex="-1"></a>Si une des hypothèses n'était pas vérifiée, on ferait :</span>
-<span id="cb44-752"><a href="#cb44-752" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-755"><a href="#cb44-755" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-756"><a href="#cb44-756" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(Oeuf <span class="sc">~</span> Dose_f, <span class="at">data =</span> df_sim_repro)</span>
-<span id="cb44-757"><a href="#cb44-757" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-758"><a href="#cb44-758" aria-hidden="true" tabindex="-1"></a>dunn.repro <span class="ot">&lt;-</span> <span class="fu">dunnTest</span>(Oeuf <span class="sc">~</span> Dose_f, <span class="at">data =</span> df_sim_repro, <span class="at">method =</span> <span class="st">"bonferroni"</span>)</span>
-<span id="cb44-759"><a href="#cb44-759" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-760"><a href="#cb44-760" aria-hidden="true" tabindex="-1"></a>dunn_results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dunn.repro<span class="sc">$</span>res) </span>
-<span id="cb44-761"><a href="#cb44-761" aria-hidden="true" tabindex="-1"></a>dunn_results <span class="sc">|&gt;</span> </span>
-<span id="cb44-762"><a href="#cb44-762" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Comparison, P.adj)</span>
-<span id="cb44-763"><a href="#cb44-763" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-764"><a href="#cb44-764" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-765"><a href="#cb44-765" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-766"><a href="#cb44-766" aria-hidden="true" tabindex="-1"></a>Ce test statistique nous permet pas de déterminer une NOEC et une LOEC. Cela est du à la plus faible puissance statistique d'un test non-paramétrique vs. paramétrique comme utilisé juste avant.</span>
+<span id="cb44-734"><a href="#cb44-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-735"><a href="#cb44-735" aria-hidden="true" tabindex="-1"></a>L'hypothèse de normalité des données et d'homogénéité des variances sont vérifiées.</span>
+<span id="cb44-736"><a href="#cb44-736" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-737"><a href="#cb44-737" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=F}</span></span>
+<span id="cb44-738"><a href="#cb44-738" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-739"><a href="#cb44-739" aria-hidden="true" tabindex="-1"></a><span class="in">lm.repro &lt;- aov(Oeuf ~ Dose_f, data = df_sim_repro)</span></span>
+<span id="cb44-740"><a href="#cb44-740" aria-hidden="true" tabindex="-1"></a><span class="in">summary(lm.repro)</span></span>
+<span id="cb44-741"><a href="#cb44-741" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-742"><a href="#cb44-742" aria-hidden="true" tabindex="-1"></a><span class="in">dunnett.test.repro &lt;- glht(lm.repro, linfct = mcp(Dose_f = "Dunnett"))</span></span>
+<span id="cb44-743"><a href="#cb44-743" aria-hidden="true" tabindex="-1"></a><span class="in">summary(dunnett.test.repro)</span></span>
+<span id="cb44-744"><a href="#cb44-744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-745"><a href="#cb44-745" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-746"><a href="#cb44-746" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-747"><a href="#cb44-747" aria-hidden="true" tabindex="-1"></a>D'après ces résultats, on en déduit que pour notre jeu de données :</span>
+<span id="cb44-748"><a href="#cb44-748" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-749"><a href="#cb44-749" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>NOEC = 7.9 mg/L</span>
+<span id="cb44-750"><a href="#cb44-750" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>LOEC = 25 mg/L</span>
+<span id="cb44-751"><a href="#cb44-751" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-752"><a href="#cb44-752" aria-hidden="true" tabindex="-1"></a>Si une des hypothèses n'était pas vérifiée, on ferait :</span>
+<span id="cb44-753"><a href="#cb44-753" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-756"><a href="#cb44-756" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-757"><a href="#cb44-757" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(Oeuf <span class="sc">~</span> Dose_f, <span class="at">data =</span> df_sim_repro)</span>
+<span id="cb44-758"><a href="#cb44-758" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-759"><a href="#cb44-759" aria-hidden="true" tabindex="-1"></a>dunn.repro <span class="ot">&lt;-</span> <span class="fu">dunnTest</span>(Oeuf <span class="sc">~</span> Dose_f, <span class="at">data =</span> df_sim_repro, <span class="at">method =</span> <span class="st">"bonferroni"</span>)</span>
+<span id="cb44-760"><a href="#cb44-760" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-761"><a href="#cb44-761" aria-hidden="true" tabindex="-1"></a>dunn_results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dunn.repro<span class="sc">$</span>res) </span>
+<span id="cb44-762"><a href="#cb44-762" aria-hidden="true" tabindex="-1"></a>dunn_results <span class="sc">|&gt;</span> </span>
+<span id="cb44-763"><a href="#cb44-763" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Comparison, P.adj)</span>
+<span id="cb44-764"><a href="#cb44-764" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-765"><a href="#cb44-765" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-766"><a href="#cb44-766" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-767"><a href="#cb44-767" aria-hidden="true" tabindex="-1"></a>Le test de Kruskal-Wallis nous donne bien l'information qu'il y a un effet de la dose sur le nombre d'oeufs produits par nos dragons. En revanche, le test de dunnet ne nous permet pas de déterminer une NOEC et une LOEC. Cela est du à la plus faible puissance statistique d'un test non-paramétrique vs. paramétrique comme utilisé juste avant.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
