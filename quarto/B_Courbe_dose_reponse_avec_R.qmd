@@ -315,7 +315,7 @@ drc.repro <- drm(
   type="Poisson",                               # <6>
   fct = LL.4(                                   
     names = c("slope", "Ymin", "Ymax", "EC50"), 
-    fixed=c(NA, 0, NA, NA)                      
+    fixed=c(NA, 0, NA, NA)                      # <7>
   )
 )
 
@@ -324,9 +324,10 @@ drc.repro <- drm(
 1.  Spécification de la formule : Endpoint à modéliser = Taux de croissance en fonction de la dose
 2.  Données à utiliser
 3.  Spécification du type de modèle à utiliser. Il existe différentes variante mais le modèle de Hill (modèle log-logistique à 4 paramètres) est le plus couramment utilisé
-4.  Re-définition du nom des variables du modèle pour qu'ils soient plus explicite
+4.  Re-définition du nom des variables du modèle pour qu'ils soient plus explicites
 5.  Argument permettant de fixer la valeur de certains paramètres du modèle. NA est mis quand on ne veut pas les fixer mais les estimer.
 6.  On spécifie que les résidus suivent une loi de Poisson.
+7.  On fixe le minimum à 0 puisqu'on sait que la reproduction minimale correspond à une reproduction à 0.
 
 Résumé du modèle pour la croissance :
 
@@ -368,20 +369,20 @@ Il faut également qu'on puisse afficher les intervalles de confiance à 95% de 
 ```{r, message=F, warning=F}
 #| code-fold: show
 
-Dose_x <- expand.grid(
-  exp(
-    seq(
-      log(0.01),log(5000), 
-      by=(log(5000)-log(0.01))/100
-      )
-    )
-  )
+Dose_x <- expand.grid(              # <1>
+  exp(                              # <1>
+    seq(                            # <1>
+      log(0.01),log(5000),          # <1>
+      by=(log(5000)-log(0.01))/100  # <1>
+      )                             # <1>
+    )                               # <1>
+  )                                 # <1>
 
 CI.croiss <- data.frame(
   Dose=Dose_x$Var1
   )
 
-pm.croiss <- predict(drc.croiss, newdata=CI.croiss, interval="confidence")
+pm.croiss <- predict(drc.croiss, newdata=CI.croiss, interval="confidence") # <2>
 CI.croiss$p <- pm.croiss[,1]
 CI.croiss$pmin <- pm.croiss[,2]
 CI.croiss$pmax <- pm.croiss[,3]
@@ -390,11 +391,15 @@ CI.repro <- data.frame(
   Dose=Dose_x$Var1
   )
 
-pm.repro <- predict(drc.repro, newdata=CI.repro, interval="confidence")
+pm.repro <- predict(drc.repro, newdata=CI.repro, interval="confidence") # <3>
 CI.repro$p <- pm.repro[,1]
 CI.repro$pmin <- pm.repro[,2]
 CI.repro$pmax <- pm.repro[,3]
 ```
+
+1.  Choix des doses pour lesquelles on veut une prédiction du modèle
+2.  Prédictions pour la croissance
+3.  Prédiction pour la reproduction
 
 Grâce à tout cela on peut enfin tracer nos graphiques.
 
@@ -631,6 +636,8 @@ bartlett.test(
 ```
 
 L’hypothèse nulle spécifie l'homogénéité des résidus, alors que l’hypothèse alternative spécifie leur hétérogénéité. La p-value étant \>0.05, rien ne permet de rejeter cette hypothèse d'homogénéité des résidus.
+
+Nos hypothèses de normalité et d'homocédasticité des résidus sont vérifiées. Nos modèles sont valides.
 
 ## Etape 5 - Détermination de la NOEC et de la LOEC
 

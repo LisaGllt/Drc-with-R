@@ -1,8 +1,7 @@
 # Objectifs de ce repo
 
-Le but ici n'est pas d'être exhaustif mais de donner le pied à l'étrier à quelqu'un qui voudrait en savoir plus sur la modélisation de courbe dose-réponse. 
+Le but ici n'est pas d'être exhaustif mais de donner le pied à l'étrier à quelqu'un qui voudrait en savoir plus sur la modélisation de courbe dose-réponse.
 
-Les exemples sont basés sur des données simulées à partir du fichier `R/Sim_data.R` et sauvegrader dans le dossier `data`. 
+Les exemples sont basés sur des données simulées à partir du fichier `R/Sim_data.R` et sauvegarder dans le dossier `data`.
 
 N’hésitez pas à me dire s’il y a des erreurs dans ce dépôt.
-

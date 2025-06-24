@@ -14,20 +14,25 @@ Les courbes dose-réponse sont un outil puissant pour comprendre l'effet des sub
 
 **Définitions Clés :**
 
-Dose 
-: Quantité d'une substance administrée à un organisme.
+Dose
 
-Réponse 
-: Effet mesuré, comme la mortalité, la croissance ou la reproduction.
+:   Quantité d'une substance administrée à un organisme.
 
-EC$_{50}$ (Concentration Effective 50%) 
-: Dose à laquelle 50% de la réponse maximale est observée.
+Réponse
 
-NOEC (No Observed Effect Concentration) 
-: Concentration testée la plus élevée sans effet observable.
+:   Effet mesuré, comme la mortalité, la croissance ou la reproduction.
 
-LOEC (Lowest Observed Effect Concentration) 
-: Concentration testée la plus faible à laquelle un effet significatif est observé.
+EC$_{50}$ (Concentration Effective 50%)
+
+:   Dose à laquelle 50% de la réponse maximale est observée.
+
+NOEC (No Observed Effect Concentration)
+
+:   Concentration testée la plus élevée sans effet observable.
+
+LOEC (Lowest Observed Effect Concentration)
+
+:   Concentration testée la plus faible à laquelle un effet significatif est observé.
 
 Même s'il existe des variantes, les courbes dose-réponse sont la plupart du temps modéliser par un modèle de Hill, aussi appelé modèle log-logistique à 4 paramètres (@eq-Hill, @fig-drcscheme).
 
@@ -170,16 +175,6 @@ plot_drc
 
 Intéprétation :
 
-- Une courbe plus abrupte indique une réponse très sensible aux variations de dose.
-- Une EC50 faible signifie que l'organisme est très sensible à la substance.
-- Les valeurs de NOEC, LOEC et EC50 permettent d'évaluer la toxicité et de fixer des seuils de sécurité.
-
-
-
-
-
-
-
-
-
-
+-   Une courbe plus abrupte indique une réponse très sensible aux variations de dose.
+-   Une EC$_{50}$ faible signifie que l'organisme est très sensible à la substance.
+-   Les valeurs de NOEC, LOEC et EC$_{50}$ permettent d'évaluer la toxicité et de fixer des seuils de sécurité.
