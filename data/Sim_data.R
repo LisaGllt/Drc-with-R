@@ -14,7 +14,7 @@ Y_min <- 0
 nb_rep <- 5
 Dose_min <- 0.25
 Factor_dose <- 10^(1/2)
-sigma <- 5 # Variabilité de la production de cocons
+sigma <- 5  # Variabilité de la production de cocons
 
 Doses <- c(
   0,
